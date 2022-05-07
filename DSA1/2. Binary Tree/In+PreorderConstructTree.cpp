@@ -11,25 +11,26 @@ BinaryTreeNode<int> *buildTreeHelper(int *in, int *pre, int inS, int inE, int pr
 
     int rootData = pre[preS];
     int rootIndex = -1;
-    for (int i = inS; i < inE; i++)
+    for (int i = inS; i <= inE; i++)
     {
-        if (rootData == in[i])
+        if (in[i] == rootIndex)
         {
             rootIndex = i;
+            break;
         }
     }
     int linS = inS;
     int linE = rootIndex - 1;
     int lpreS = preS + 1;
-    int lpreE = linE - linS + lpreS;
+    int lpreE = lpreS + linE - linS;
     int rinS = rootIndex + 1;
     int rinE = inE;
     int rpreS = lpreE + 1;
     int rpreE = preE;
 
     BinaryTreeNode<int> *root = new BinaryTreeNode<int>(rootData);
-    root->left = buildTreeHelper(in, pre, linS, linE, lpreE, lpreE);
-    root->left = buildTreeHelper(in, pre, rinS, rinE, rpreE, rpreE);
+    root->left = buildTreeHelper(in, pre, linS, linE, lpreS, lpreE);
+    root->left = buildTreeHelper(in, pre, rinS, rinE, rpreS, rpreE);
     return root;
 }
 
@@ -43,12 +44,12 @@ int main()
     int n;
     cin >> n;
     int a[n], b[n];
-    cout << "Enter values of inorder : ";
+    cout << "Enter elements of inorder : ";
     for (int i = 0; i < n; i++)
     {
         cin >> a[i];
     }
-    cout << "Enter values of preorder : ";
+    cout << "Enter elements of preorder : ";
     for (int i = 0; i < n; i++)
     {
         cin >> b[i];
