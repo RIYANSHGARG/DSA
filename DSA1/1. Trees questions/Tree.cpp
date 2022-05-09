@@ -68,23 +68,23 @@ void print(TreeNode<int> *root)
     }
 }
 
-void printLevelWise(TreeNode<int> *root)
+void printTreeLevelWise(TreeNode<int> *root)
 {
     if (root == NULL)
     {
         return;
     }
-    queue<TreeNode<int> *> q;
-    q.push(root);
-    while (q.size() != 0)
+    queue<TreeNode<int> *> pendingNodes;
+    pendingNodes.push(root);
+    while (pendingNodes.size() != 0)
     {
-        TreeNode<int> *front = q.front();
-        q.pop();
+        TreeNode<int> *front = pendingNodes.front();
+        pendingNodes.pop();
         cout << front->data << " : ";
         for (int i = 0; i < front->children.size(); i++)
         {
             cout << front->children[i]->data << ",";
-            q.push(root->children[i]);
+            pendingNodes.push(front->children[i]);
         }
         cout << endl;
     }

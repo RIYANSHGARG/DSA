@@ -11,19 +11,22 @@ int countNode(TreeNode<int> *root, int element)
     int count = 0;
     for (int i = 0; i < root->children.size(); i++)
     {
-        if (root->data > element)
-        {
-            count++;
-        }
         count += countNode(root->children[i], element);
     }
-    return count;
+    if (root->data > element)
+    {
+        return count + 1;
+    }
+    else
+    {
+        return count;
+    }
 }
 
 int main()
 {
     TreeNode<int> *root = takeInputLevelWise();
-    // printLevelWise(root);
+    printTreeLevelWise(root);
     int count = countNode(root, 5);
     cout << count;
     return 0;
