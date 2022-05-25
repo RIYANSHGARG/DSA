@@ -23,24 +23,6 @@ TreeNode<int> *rootChildMax(TreeNode<int> *root)
     }
     ans = (newsum > sum) ? maxroot : ans;
     return ans;
-
-    // vector<int> maxValues;
-    // int oldsum = 0, newsum = 0;
-    // TreeNode<int> *node = root;
-    // for (int i = 0; i < root->children.size(); i++)
-    // {
-    //     oldsum += root->children[i]->data;
-    // }
-    // oldsum += root->data;
-    // for (int i = 0; i < root->children.size(); i++)
-    // {
-    //     root = rootChildMax(root->children[i]);
-    // }
-    // if (oldsum < newsum)
-    // {
-    //     node = root;
-    // }
-    // return node;
 }
 
 int main()
