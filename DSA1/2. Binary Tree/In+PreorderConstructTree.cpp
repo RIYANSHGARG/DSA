@@ -13,7 +13,7 @@ BinaryTreeNode<int> *buildTreeHelper(int *in, int *pre, int inS, int inE, int pr
     int rootIndex = -1;
     for (int i = inS; i <= inE; i++)
     {
-        if (in[i] == rootIndex)
+        if (in[i] == rootData)
         {
             rootIndex = i;
             break;
@@ -30,7 +30,7 @@ BinaryTreeNode<int> *buildTreeHelper(int *in, int *pre, int inS, int inE, int pr
 
     BinaryTreeNode<int> *root = new BinaryTreeNode<int>(rootData);
     root->left = buildTreeHelper(in, pre, linS, linE, lpreS, lpreE);
-    root->left = buildTreeHelper(in, pre, rinS, rinE, rpreS, rpreE);
+    root->right = buildTreeHelper(in, pre, rinS, rinE, rpreS, rpreE);
     return root;
 }
 
