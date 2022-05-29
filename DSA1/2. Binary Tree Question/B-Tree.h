@@ -91,3 +91,38 @@ void printLevelWise(BinaryTreeNode<int> *root)
         cout << endl;
     }
 }
+
+void levelOrderTraversal(BinaryTreeNode<int> *root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+    queue<BinaryTreeNode<int> *> q;
+    q.push(root);
+    q.push(NULL);
+    while (q.size() != 0)
+    {
+        BinaryTreeNode<int> *frontNode = q.front();
+        q.pop();
+        if (frontNode == NULL)
+        {
+            if (q.size() == 0)
+            {
+                return;
+            }
+            cout << endl;
+            q.push(NULL);
+            continue;
+        }
+        cout << frontNode->data << " ";
+        if (frontNode->left != NULL)
+        {
+            q.push(frontNode->left);
+        }
+        if (frontNode->right != NULL)
+        {
+            q.push(frontNode->right);
+        }
+    }
+}
