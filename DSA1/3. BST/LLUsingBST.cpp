@@ -21,25 +21,25 @@ Node *LLUsingBST(BinaryTreeNode<int> *root)
         Node *head = NULL;
         return head;
     }
-    Node *head;
-    Node *tail;
+
     Node *newNode = new Node(root->data);
 
     Node *left = LLUsingBST(root->left);
     Node *right = LLUsingBST(root->right);
 
-    if (head == NULL)
+    if (left == NULL)
     {
-        head = newNode;
-        tail = head;
+        newNode->next = right;
+        return newNode;
     }
+
     Node *temp = left;
     while (temp->next != NULL)
     {
         temp = temp->next;
     }
-    temp->next = head;
-    tail->next = right;
+    temp->next = newNode;
+    newNode->next = right;
 
     return left;
 }
