@@ -1,3 +1,5 @@
+// Heap Sort
+
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -120,6 +122,34 @@ public:
         return ans;
     }
 };
+
+void inplaceHeapSort(int a[], int n)
+{
+    for (int i = 1; i < n; i++)
+    {
+        int childIndex = i;
+        while (childIndex > 0)
+        {
+            int parentIndex = (childIndex - 1) / 2;
+
+            if (a[childIndex] < a[parentIndex])
+            {
+                int temp = a[childIndex];
+                a[childIndex] = a[parentIndex];
+                a[parentIndex] = temp;
+            }
+            else
+            {
+                break;
+            }
+            childIndex = parentIndex;
+        }
+    }
+
+    int ans = a[0];
+    a[0] = a[n - 1];
+    a[n - 1] = ans;
+}
 
 int main()
 {
