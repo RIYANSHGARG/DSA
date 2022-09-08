@@ -12,7 +12,8 @@ vector<int> AllConnectedGraphHelper(int **edges, int v, int sv, int *visited)
             continue;
         if (edges[sv][i] && !visited[i])
         {
-            AllConnectedGraphHelper(edges, v, i, visited);
+            ans = AllConnectedGraphHelper(edges, v, i, visited);
+            ans.push_back(sv);
         }
     }
     return ans;
@@ -21,6 +22,7 @@ vector<int> AllConnectedGraphHelper(int **edges, int v, int sv, int *visited)
 vector<vector<int>> AllConnectedGraph(int **edges, int v)
 {
     vector<vector<int>> ans;
+    vector<int> Connected;
     int *visited = new int[v];
     for (int i = 0; i < v; i++)
     {
@@ -29,15 +31,21 @@ vector<vector<int>> AllConnectedGraph(int **edges, int v)
     for (int i = 0; i < v; i++)
     {
         if (visited[i])
-        {
             continue;
-        }
         else
         {
-            vector<int> Connected = AllConnectedGraphHelper(edges, v, i, visited);
+            Connected = AllConnectedGraphHelper(edges, v, i, visited);
+            cout << Connected.size() << " ";
             ans.push_back(Connected);
         }
+        for (int j = 0; j < Connected.size(); j++)
+        {
+            cout << Connected[j] << " ";
+        }
+        cout << endl;
     }
+    cout << ans.size() << " " << ans[0].size() << endl
+         << ans[1][2];
     delete[] visited;
     return ans;
 }
@@ -67,21 +75,15 @@ int main()
 
     vector<vector<int>> ans;
     ans = AllConnectedGraph(edges, v);
-    // v = AllConnectedGraph(edges, v);
-    // for (auto i : ans)
+    cout << ans.size() << " " << ans[0].size() << endl;
+    cout << ans[0][0] << ans[0][1] << ans[0][2] << ans[0][3];
+    // for (int i = 0; i < ans.size(); i++)
     // {
-    //     for (auto j : i)
+    //     for (int j = 0; i < ans[i].size(); j++)
     //     {
-    //         cout << j << " ";
+    //         cout << ans[i][j] << " ";
     //     }
+    //     cout << endl;
     // }
-    for (int i = 0; i < ans.size(); i++)
-    {
-        for (int j = 0; i < ans[i].size(); j++)
-        {
-            cout << ans[i][j] << " ";
-        }
-        cout << endl;
-    }
     return 0;
 }
