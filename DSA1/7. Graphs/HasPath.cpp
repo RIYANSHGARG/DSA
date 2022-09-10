@@ -1,33 +1,32 @@
 #include <bits/stdc++.h>
-#include "ConnectedDisconnected.cpp"
 using namespace std;
 
 bool DFSTraversal(int **edges, int v, int startv, int endv, bool *visited)
 {
-    int ans = false;
     visited[startv] = true;
+    if (startv == endv)
+    {
+        return true;
+    }
     for (int i = 0; i < v; i++)
     {
         if (i == startv)
         {
             continue;
         }
-        if (edges[startv][i] == 1)
+        if (edges[startv][i] == 1 && !visited[i])
         {
-            if (visited[i])
-            {
-                continue;
-            }
-            if (i == endv)
-            {
+            if (DFSTraversal(edges, v, i, endv, visited))
                 return true;
-            }
-            DFSTraversal(edges, v, i, endv, visited);
         }
     }
     return false;
 }
 
+// if (i == endv)
+//             {
+//                 return true;
+//             }
 int main()
 {
     int startv, endv;
@@ -57,7 +56,15 @@ int main()
     {
         visited[i] = false;
     }
-    bool ans = DFSTraversal(edges, v, startv, endv, visited);
-    cout << ans;
+    bool result = DFSTraversal(edges, v, startv, endv, visited);
+    cout << result;
     return 0;
 }
+
+// 0 3
+// 5 5
+// 0 1
+// 0 2
+// 2 4
+// 1 3
+// 2 3
