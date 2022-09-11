@@ -3,6 +3,11 @@
 // Given a graph with no negative wights
 // It is used to find the min path between two vertices.
 // shortest dinstance of all vertices
+// Time Complexity : O(V^2)
+
+// OPTIMISING
+// Using Priority Queue and adjcancy list
+// Time complexity : O((V+E)log V)
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -33,9 +38,9 @@ void Dijaktras(int **edges, int n)
 
     for (int i = 0; i < n - 1; i++)
     {
-        int minVertex = findMinVertex(distance, visited, n);
+        int minVertex = findMinVertex(distance, visited, n); // OPTIMISE : Using Binary Priority Queue We ca optimise it.
         visited[minVertex] = true;
-        for (int j = 0; j < n; j++)
+        for (int j = 0; j < n; j++) // OPTIMISE :  If we use adjcancy list then we will go to only adjacent vertices rather than all vertices.
         {
             if (!visited[j] && edges[minVertex][j] != 0)
             {
@@ -86,4 +91,4 @@ int main()
 // 1 2 2
 // 2 3 5
 // 2 4 9
-// 3 4 4
+// 3 4 5
