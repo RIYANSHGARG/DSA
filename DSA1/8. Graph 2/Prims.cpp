@@ -1,4 +1,10 @@
 // Prims Algo : one of the ways of finding MST(Min. spanning tree)
+// Time Complexity : O(n^2)
+
+// OPTIMISE
+// Adjcancy list
+// Binary min Priority Queue O(log N)
+// Time Complexity : O((V+E)log V)
 
 // #include <bits/stdc+++.h>
 #include <iostream>
