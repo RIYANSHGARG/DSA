@@ -19,7 +19,7 @@ int main()
             }
         }
         ans.push_back(v);
-    }
+        }
     for (auto i : ans)
     {
         for (auto j : i)
